@@ -1,10 +1,13 @@
 #include <iostream>
 #include <cmath>
 #include <ctime>
+#include <string>
 #include "UserInterface.h"
 #include "Game.h"
 #include "Player.h"
 #include "Store.h"
+#include "Inventory.h"
+#include "Lemon.h"
 
 using namespace std;
 

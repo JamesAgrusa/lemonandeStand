@@ -1,7 +1,8 @@
 class Player
 {
 public:
-
+	Inventory inventory;
+	Wallet wallet;
 
 	Player();
 

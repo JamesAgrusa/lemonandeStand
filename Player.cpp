@@ -3,12 +3,15 @@
 #include "Game.h"
 #include "Player.h"
 #include "Store.h"
+#include "Inventory.h"
+#include "Lemon.h"
+#include "Wallet.h"
 
 using namespace std;
 
 Player::Player()
 {
-
+	Inventory inventory;
 }
 
 void Player::goToTheStore()
@@ -45,6 +48,7 @@ void Player::Shopping()
 {
 	userInterface userInterface;
 	Store store;
+	string item[] = { "lemon", "sugar cube", "ice cube", "cup" };
 	double saleCost;
 	int choice;
 	cout << "What would you like to buy:\n1: Lemon - cost 0.25 per Lemon\n2: Sugar Cube - cost 0.10 per Sugar Cube\n3: Ice Cube - cost 0.01 per Ice Cube\n4: Cup - cost 0.05 per Cup\n5: Back to Main Menu\n";
