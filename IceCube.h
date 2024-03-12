@@ -1,0 +1,7 @@
+class IceCube
+{
+public:
+
+	IceCube();
+
+};

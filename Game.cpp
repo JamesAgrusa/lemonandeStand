@@ -3,6 +3,8 @@
 #include "UserInterface.h"
 #include "Player.h"
 #include "Store.h"
+#include "Inventory.h"
+#include "Lemon.h"
 
 using namespace std;
 
@@ -22,12 +24,16 @@ void Game::runGame()
 bool Game::userChoices()
 {
 	int choice;
+	Player player;
+	
+	
 	cout << "What would you like to do?\n1. Go to the Store?\n2. See weeks forcast?\n3. Change recipe?\n4. Open lemonade stand\n" << endl;
 	cin >> choice;
 
 	switch (choice)
 	{
 	case 1:
+		player.goToTheStore();
 		// go to the store
 		break;
 

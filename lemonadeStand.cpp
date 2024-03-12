@@ -1,8 +1,14 @@
 #include "userInterface.h"
+#include "Game.h"
+#include "Player.h"
+#include "Inventory.h"
+#include "Store.h"
 
 
 int main()
 {
-	userInterface game;
-	game.gameSetUp();
+	Game lemonadeStand;
+	
+	lemonadeStand.runGame();
+	
 }

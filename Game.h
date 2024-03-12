@@ -2,6 +2,7 @@ class Game
 {
 public:
 
+	Player player;
 
 	Game();
 
