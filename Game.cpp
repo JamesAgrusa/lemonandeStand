@@ -2,6 +2,7 @@
 #include "Game.h"
 #include "UserInterface.h"
 #include "Player.h"
+#include "Store.h"
 
 using namespace std;
 

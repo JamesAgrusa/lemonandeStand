@@ -9,9 +9,12 @@ public:
 
 	void instructions();
 	void gameSetUp();
-	void begginingDayDisplay();
+	void startDayDisplay();
 	void userDisplay();
 	void inventoryDisplay();
 	void recipeDisplay();
-
+	void costDisplay();
+	int GetRandomInteger(int min, int max);
+	int GetUserInteger(string output);
+	
 };

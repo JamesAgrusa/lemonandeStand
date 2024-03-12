@@ -2,6 +2,7 @@
 #include "UserInterface.h"
 #include "Game.h"
 #include "Player.h"
+#include "Store.h"
 
 using namespace std;
 
@@ -43,6 +44,7 @@ bool Player::ContinueShopping()
 void Player::Shopping()
 {
 	userInterface userInterface;
+	Store store;
 	double saleCost;
 	int choice;
 	cout << "What would you like to buy:\n1: Lemon - cost 0.25 per Lemon\n2: Sugar Cube - cost 0.10 per Sugar Cube\n3: Ice Cube - cost 0.01 per Ice Cube\n4: Cup - cost 0.05 per Cup\n5: Back to Main Menu\n";
@@ -50,6 +52,6 @@ void Player::Shopping()
 	if (choice == '1')
 	{
 		userInterface.inventoryDisplay();
-		saleCost = // from here need to add a store class and call to it to be abe to sell lemons!!
+		saleCost = store.SellLemons(); // from here need to add a store class and call to it to be abe to sell lemons!!
 	}
 }
