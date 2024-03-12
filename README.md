@@ -1,2 +1,2 @@
 # lemonandeStand
-my biggest project to date!
+re creating the lemonade stand game!
