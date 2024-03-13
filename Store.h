@@ -2,7 +2,7 @@ class Store
 {
 public:
 	// variables ( Has A )
-	string itemPurchase;
+	static string itemPurchase;
 	int numberOfItems;
 	double saleCost;
 	double SellLemons(Player player);
@@ -19,7 +19,7 @@ public:
 
 	//functions ( Can Do)
 	int NumberOfItemsToPurchase();
-	void itemAquiredByPlayer(int numberOfItems, Player player, string itemPurchase) // int numberOfItems, Player player, string itemPurchase);
+	void itemAquiredByPlayer(); // int numberOfItems, Player player, string itemPurchase);
 	
 	
 

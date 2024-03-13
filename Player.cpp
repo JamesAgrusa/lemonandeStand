@@ -48,6 +48,7 @@ void Player::Shopping()
 {
 	userInterface userInterface;
 	Store store;
+	Player player;
 	string item[] = { "lemon", "sugar cube", "ice cube", "cup" };
 	double saleCost;
 	int choice;
@@ -56,6 +57,6 @@ void Player::Shopping()
 	if (choice == '1')
 	{
 		userInterface.inventoryDisplay();
-		saleCost = store.SellLemons(); // from here need to add a store class and call to it to be abe to sell lemons!!
+		saleCost = store.SellLemons(player); // from here need to add a store class and call to it to be abe to sell lemons!!
 	}
 }

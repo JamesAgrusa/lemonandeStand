@@ -2,7 +2,7 @@ class userInterface
 {
 public:
 
-
+	
 
 	userInterface();
 
@@ -10,11 +10,11 @@ public:
 	void instructions();
 	void gameSetUp();
 	void startDayDisplay();
-	void userDisplay();
-	void inventoryDisplay();
+	static void userDisplay();
+	static void inventoryDisplay();
 	void recipeDisplay();
 	void costDisplay();
 	int GetRandomInteger(int min, int max);
-	int GetUserInteger(string output);
+	static int GetUserInteger(string output);
 	
 };

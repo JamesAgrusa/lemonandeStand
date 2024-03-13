@@ -65,14 +65,19 @@ int Store::NumberOfItemsToPurchase()
 	return numberOfItems;
 }
 
-void Store::itemAquiredByPlayer(int numberOfItems, Player player, string itemPurchase) //int numberOfItems, Player player, string itemPurchase)
+void Store::itemAquiredByPlayer() //int numberOfItems, Player player, string itemPurchase)
 {
+	Inventory inventory;
 	Player player;
-	for (int i = 0; i < numberOfItems; i++)
+	Lemon lemon;
+	for (int i = 0; i < numberOfItems; i++) 
 	{
 		if (itemPurchase == "lemon")
 		{
-			player.inventory.lemon;
+			
+			player.inventory.lemon.addLemon();
+			
+			
 		}
 		else if (itemPurchase == "sugarcube")
 		{
@@ -94,6 +99,6 @@ void Store::storePurchase()
 
 	cout << "Your total comes out too " << saleCost << endl;
 	player.wallet.money -= saleCost;
-	itemAquiredByPlayer(numberOfItems, player, itemPurchase);
+	itemAquiredByPlayer(); // numberOfItems, player, itemPurchase
 	cout << "You have: " << player.wallet.money << " left" << endl;
 }

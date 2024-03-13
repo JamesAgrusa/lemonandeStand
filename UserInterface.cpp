@@ -94,8 +94,8 @@ void userInterface::costDisplay()
 
 int userInterface::GetRandomInteger(int min, int max)
 {
-	int min = 1;
-	int max = 100;
+	int min{};
+	int max{};
 	srand(unsigned(time(0)));
 	int randInteger = rand() % min + max;
 	return randInteger;
@@ -103,8 +103,8 @@ int userInterface::GetRandomInteger(int min, int max)
 
 int userInterface::GetUserInteger(string output)
 {
-	int output;
-	int result;
+	string output{};
+	int result{};
 
 	cout << output << endl;
 	cin >> output;

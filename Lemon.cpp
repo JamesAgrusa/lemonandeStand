@@ -16,3 +16,17 @@ Lemon::Lemon()
 
 	int purhcasePrice = 0.25;
 }
+
+void Lemon::addLemon()
+{
+	// trying to figure out how to add an item once bought
+	// will then need to figure out how to delete item once used in recipe!
+	Lemon lemon;
+	for (int i = 0; i < numberOfItems; i++)
+	{
+		if (itemPurchase == '1')
+		{
+			lemon.numberOfItems++;
+		}
+	}
+}
