@@ -1,11 +1,18 @@
 class Game
 {
 public:
+	// variables ( Has A )
+	UserInterface userInterface;
 
-	Player player;
+	// constructor
 
 	Game();
 
+	// functions ( Can Do )
 	void runGame();
-	bool userChoices();
+	char userChoice();
+	int goToStore();
+	void seeForcast();
+
+
 };

@@ -1,20 +1,21 @@
-class userInterface
+class UserInterface
 {
 public:
-
+	// variables ( Has A )
 	
+	// constructor 
 
-	userInterface();
+	UserInterface();
 
+	// functions ( Can Do )
 
 	void instructions();
-	void gameSetUp();
-	void startDayDisplay();
-	static void userDisplay();
-	static void inventoryDisplay();
+	void gameSetup();
+	void startOfDay();
+	void userDisplay();
+	void inventoryDisplay();
 	void recipeDisplay();
 	void costDisplay();
-	int GetRandomInteger(int min, int max);
-	static int GetUserInteger(string output);
-	
+
+
 };

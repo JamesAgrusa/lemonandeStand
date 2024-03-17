@@ -1,10 +1,8 @@
 #include <iostream>
-#include "Game.h"
 #include "UserInterface.h"
-#include "Player.h"
+#include "Game.h"
 #include "Store.h"
 #include "Inventory.h"
-#include "Lemon.h"
 
 using namespace std;
 
@@ -15,43 +13,38 @@ Game::Game()
 
 void Game::runGame()
 {
-	userInterface userInterface;
-
-	userInterface.gameSetUp();
-	userChoices();
+	
+	userInterface.gameSetup();
+	userChoice();
+	goToStore();
+	// seeForcast();
+	
 }
 
-bool Game::userChoices()
+char Game::userChoice()
 {
-	int choice;
-	Player player;
+	char choice;
+	// int choice = userChoice();
 	
-	
-	cout << "What would you like to do?\n1. Go to the Store?\n2. See weeks forcast?\n3. Change recipe?\n4. Open lemonade stand\n" << endl;
+	cout << "" << endl;
+	cout << "What would you like to do?\nA. Go to the Store?\nB. See weeks forcast?\nC. Change recipe?\nD. Open lemonade stand\n" << endl;
 	cin >> choice;
 
-	switch (choice)
-	{
-	case 1:
-		player.goToTheStore();
-		// go to the store
-		break;
+	return choice;
+}
 
-	case 2:
-		// see the forcast
-		break;
+int Game::goToStore()
+{
+	int choice;
+	cout << "Welcome to the store " << endl;
+	cout << "What do you need to pick up today?" << endl;
+	cout << "\n1: Lemon - cost 0.25 per Lemon\n2: Sugar Cube - cost 0.10 per Sugar Cube\n3: Ice Cube - cost 0.01 per Ice Cube\n4: Cup - cost 0.05 per Cup\n5: Back to Main Menu\n";
+	cin >> choice;
 
-	case 3:
-		// change the recipe
-		break;
+	return choice;
+}
 
-	case 4:
-		// open the stand
-		break;
-		
-	}
-
-	bool continueUserChoices; // = ContinueUserChoices();
-
-	return continueUserChoices;
+void Game::seeForcast()
+{
+	cout << "this is the forcast for the week" << endl;
 }
