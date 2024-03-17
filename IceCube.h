@@ -1,7 +1,0 @@
-class IceCube
-{
-public:
-
-	IceCube();
-
-};
