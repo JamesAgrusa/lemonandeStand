@@ -68,7 +68,6 @@ void UserInterface::costDisplay()
 
 void UserInterface::inventoryDisplay()
 {
-	// Inventory lemon;
 	Inventory inventory;
 
 	// where items in user current inventory is shown
