@@ -58,6 +58,7 @@ bool Game::userChoice()
 
 char Game::goToStore()
 {
+	Store store;
 	char choice;
 	cout << "" << endl;
 	cout << "Welcome to the store " << endl;
@@ -66,34 +67,44 @@ char Game::goToStore()
 	cin >> choice;
 	if (choice == 'A')
 	{
-		char choice;
-		// Here I need to get lemon count from inventory and then be able to get it to add based on purchase number choice
-		Inventory inventory;
-		inventory.lemonCount;
+		
 		cout << "You want to buy some lemons" << endl;
-		cout << "How many lemons would you like to purchase?" << endl;
-		cin >> inventory.lemonCount;
-		cout << "" << endl;
-		cout << "" << endl;
-		cout << "Are you done buying lemons? Yes(Y) or No(N)" << endl;
-		cin >> choice;
-			if (choice == 'Y')
-			{
-				goToStore();
-			}	
-			return choice;
+		store.numberItemsToPurchase();
+		store.stillBuying();
+		// char choice;
+		// Here I need to get lemon count from inventory and then be able to get it to add based on purchase number choice
+		// Inventory inventory;
+		// inventory.lemonCount;
+		
+		// cout << "How many lemons would you like to purchase?" << endl;
+		// cin >> inventory.lemonCount;
+		// cout << "" << endl;
+		// cout << "" << endl;
+		// cout << "Are you done buying lemons? Yes(Y) or No(N)" << endl;
+		// cin >> choice;
+			// if (choice == 'Y')
+			// {
+				// goToStore();
+			// }	
+			// return choice;
 	}
 	else if (choice == 'B')
 	{
 		cout << "You want to buy some sugar cubes" << endl;
+		store.numberItemsToPurchase();
+		store.stillBuying();
 	}
 	else if (choice == 'C')
 	{
 		cout << "You want to buy some ice cubes" << endl;
+		store.numberItemsToPurchase();
+		store.stillBuying();
 	}
 	else if (choice == 'D')
 	{
 		cout << "You want to buy some cups" << endl;
+		store.numberItemsToPurchase();
+		store.stillBuying();
 	}
 	else if (choice == 'E')
 	{
