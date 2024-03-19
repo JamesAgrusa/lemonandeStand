@@ -3,6 +3,8 @@ class UserInterface
 public:
 	// variables ( Has A )
 	
+	
+
 	// constructor 
 
 	UserInterface();
@@ -16,6 +18,5 @@ public:
 	void inventoryDisplay();
 	void recipeDisplay();
 	void costDisplay();
-
-
+	
 };

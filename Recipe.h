@@ -2,10 +2,11 @@ class Recipe
 {
 public:
 	// variables ( Has A )
-	double pricePerCup{};
-	int recipeCallsLemon{};
-	int recipeCallsSugar{};
-	int recipeCallsIce{};
+	double pricePerCup = .75;
+	int recipeCallsLemon = 4;
+	int recipeCallsSugar = 4;
+	int recipeCallsIce = 4;
+	UserInterface userInterface;
 
 	// constructor
 	Recipe();

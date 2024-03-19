@@ -4,6 +4,7 @@
 #include "Store.h"
 #include "Inventory.h"
 #include "Recipe.h"
+#include "Day.h"
 
 using namespace std;
 
@@ -14,18 +15,13 @@ Game::Game()
 
 void Game::runGame()
 {
-	
 	userInterface.gameSetup();
 	userChoice();
-	//goToStore();
-	// seeForcast();
-	
 }
 
 bool Game::userChoice()
 {
 	char choice;
-	// int choice = userChoice();
 	
 	cout << "" << endl;
 	cout << "What would you like to do?\nA. Go to the Store?\nB. See weeks forcast?\nC. Change recipe?\nD. Open lemonade stand\n" << endl;
@@ -108,18 +104,19 @@ char Game::goToStore()
 
 char Game::seeForcast()
 {
+	Day day;
 	char choice;
 	cout << "" << endl;
 	cout << "this is the forcast for the week" << endl;
 	cout << "many varables coming up this week!! Better monitor the chart carefully to best prepare to make maximum profit :D" << endl;
 	cout << "" << endl;
-	cout << "Sunday forecast: " << endl;
-	cout << "Monday forcast: " << endl;
-	cout << "Tuesday forecast: " << endl;
-	cout << "Wednesday forecast: " << endl;
-	cout << "Thursday forecast: " << endl;
-	cout << "Friday forcast: " << endl;
-	cout << "Saturday forecast: " << endl;
+	cout << "Sunday forecast: " << day.weatherTemp() << endl;
+	cout << "Monday forecast: " << day.weatherTemp() << endl;
+	cout << "Tuesday forecast: " << day.weatherTemp() << endl;
+	cout << "Wednesday forecast: " << day.weatherTemp() << endl;
+	cout << "Thursday forecast: " << day.weatherTemp() << endl;
+	cout << "Friday forcast: " << day.weatherTemp() << endl;
+	cout << "Saturday forecast: " << day.weatherTemp() <<  endl;
 	cout << "" << endl;
 	cout << "Would you like to go back to main menu? Yes(Y) or No(N)" << endl;
 	cin >> choice;
@@ -140,15 +137,17 @@ char Game::changeRecipe()
 	UserInterface userInterface;
 	char choice;
 	cout << "" << endl;
-	cout << "Here is where we can change our recipe to  work with the up coming weather" << endl;
+	cout << "Here is where we can change our recipe to work with the up coming weather" << endl;
 	recipe.priceOfCup();
 	recipe.changeLemonCount();
+	recipe.changeSugarCount();
+	recipe.changeIceCount();
 	cout << "" << endl;
 	cout << "Are you done changing your recipe? Yes(Y) or No(N)" << endl;
+	cout << "" << endl;
 	cin >> choice;
 	if (choice == 'Y')
 	{
-		userInterface.startOfDay();
 		userChoice();
 	}
 	else

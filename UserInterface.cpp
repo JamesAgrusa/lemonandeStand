@@ -1,8 +1,10 @@
 #include <iostream>
+#include <string>
 #include "UserInterface.h"
 #include "Store.h"
 #include "Inventory.h"
 #include "Recipe.h"
+#include "Day.h"
 
 using namespace std;
 
@@ -19,7 +21,7 @@ void UserInterface::instructions()
 	cout << "" << endl << flush;
 	cout << "Here we are going to be running our own lemonade stand, how exciting!!" << endl << flush;
 	cout << "" << endl << flush;
-	cout << "Here is a rundown of the game :" << endl << flush;
+	cout << "Here is a rundown of the game" << endl << flush;
 	cout << "" << endl;
 	cout << "You will start each day seeing what is in your inventory, then you will decide if you want to go to the store or not" << endl << flush;
 	cout << "Once you return from the store you will then decide if you wish to change your recipe or prices for the day" << endl << flush;
@@ -27,7 +29,7 @@ void UserInterface::instructions()
 
 	cout << "" << endl << flush;
 	cout << "Keep in mind that the weather, the prices you set, and your recipe all super megaly affect the customers choice to buy!" << endl << flush;
-	cout << "Also keep in mind the forcast at the start of each day, when making your purchaes and changing your recipe" << endl << flush;
+	cout << "Also keep in mind the forcast at the start of each day, when making your purchaeses and changing your recipe" << endl << flush;
 	cout << "" << endl << flush;
 	cout << "" << endl << flush;
 	cout << "***********************************************************************************************************" << endl;
@@ -36,7 +38,6 @@ void UserInterface::instructions()
 void UserInterface::gameSetup()
 {
 	instructions();
-	
 	startOfDay();
 }
 
@@ -57,9 +58,10 @@ void UserInterface::startOfDay()
 
 void UserInterface::costDisplay()
 {
+	double pricePerCup;
 	Recipe recipe;
 	cout << "" << endl;
-	cout << "Current cost per cup: $ " << recipe.priceOfCup() << endl;
+	cout << "Current cost per cup: $ " << recipe.pricePerCup << endl;
 	cout << "" << endl;
 }
 
@@ -67,14 +69,15 @@ void UserInterface::userDisplay()
 {
 	// potentially get user name and have displayed in 'welcome' phrase
 	cout << "Welcome to Your Lemonand Stand!" << endl;
-	cout << "Todays forcast is: " << endl;
+	cout << "" << endl;
+	cout << "Todays forcast is: muffins " << endl;
 }
 
 void UserInterface::inventoryDisplay()
 {
 	Inventory inventory;
 
-	// where items in user current inventory is shown
+	// where items in user current inventory are shown
 	cout << "You currently have " << endl;
 	cout << "$:  " << endl;
 	cout << "Lemons: " << inventory.lemonCount << endl;
@@ -87,9 +90,11 @@ void UserInterface::recipeDisplay()
 {
 	Recipe recipe;
 
-	cout << "Your current recipe calls for the following :  "  << endl;
-	cout << "Lemons: " << recipe.changeLemonCount() << endl;
-	cout << "Sugar Cubes: " << recipe.changeSugarCount() << endl;
-	cout << "Ice Cubes: " << recipe.changeIceCount() << endl;
+	cout << "Your recipe calls for: "  << endl;
+	cout << "Lemons: " << recipe.recipeCallsLemon << endl;
+	cout << "Sugar Cubes: " << recipe.recipeCallsSugar << endl;
+	cout << "Ice Cubes: " << recipe.recipeCallsIce << endl;
 }
+
+
 
