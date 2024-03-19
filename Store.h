@@ -3,7 +3,7 @@ class Store
 public:
 	int numberOfItems{};
 	
-	double saleCost;
+	double saleCost{};
 
 	Store();
 

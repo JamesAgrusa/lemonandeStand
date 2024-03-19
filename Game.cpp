@@ -3,6 +3,7 @@
 #include "Game.h"
 #include "Store.h"
 #include "Inventory.h"
+#include "Recipe.h"
 
 using namespace std;
 
@@ -71,22 +72,7 @@ char Game::goToStore()
 		cout << "You want to buy some lemons" << endl;
 		store.numberItemsToPurchase();
 		store.stillBuying();
-		// char choice;
-		// Here I need to get lemon count from inventory and then be able to get it to add based on purchase number choice
-		// Inventory inventory;
-		// inventory.lemonCount;
 		
-		// cout << "How many lemons would you like to purchase?" << endl;
-		// cin >> inventory.lemonCount;
-		// cout << "" << endl;
-		// cout << "" << endl;
-		// cout << "Are you done buying lemons? Yes(Y) or No(N)" << endl;
-		// cin >> choice;
-			// if (choice == 'Y')
-			// {
-				// goToStore();
-			// }	
-			// return choice;
 	}
 	else if (choice == 'B')
 	{
@@ -150,14 +136,19 @@ char Game::seeForcast()
 
 char Game::changeRecipe()
 {
+	Recipe recipe;
+	UserInterface userInterface;
 	char choice;
 	cout << "" << endl;
 	cout << "Here is where we can change our recipe to  work with the up coming weather" << endl;
+	recipe.priceOfCup();
+	recipe.changeLemonCount();
 	cout << "" << endl;
 	cout << "Are you done changing your recipe? Yes(Y) or No(N)" << endl;
 	cin >> choice;
 	if (choice == 'Y')
 	{
+		userInterface.startOfDay();
 		userChoice();
 	}
 	else

@@ -4,6 +4,7 @@
 #include "Game.h"
 #include "Store.h"
 #include "Inventory.h"
+#include "Recipe.h"
 
 using namespace std;
 

@@ -2,6 +2,7 @@
 #include "UserInterface.h"
 #include "Store.h"
 #include "Inventory.h"
+#include "Recipe.h"
 
 using namespace std;
 
@@ -35,6 +36,7 @@ void UserInterface::instructions()
 void UserInterface::gameSetup()
 {
 	instructions();
+	
 	startOfDay();
 }
 
@@ -53,17 +55,19 @@ void UserInterface::startOfDay()
 	inventoryDisplay();
 }
 
+void UserInterface::costDisplay()
+{
+	Recipe recipe;
+	cout << "" << endl;
+	cout << "Current cost per cup: $ " << recipe.priceOfCup() << endl;
+	cout << "" << endl;
+}
+
 void UserInterface::userDisplay()
 {
-
 	// potentially get user name and have displayed in 'welcome' phrase
 	cout << "Welcome to Your Lemonand Stand!" << endl;
 	cout << "Todays forcast is: " << endl;
-}
-
-void UserInterface::costDisplay()
-{
-	cout << "Current cost per cup: " << endl;
 }
 
 void UserInterface::inventoryDisplay()
@@ -81,8 +85,11 @@ void UserInterface::inventoryDisplay()
 
 void UserInterface::recipeDisplay()
 {
-	cout << "Your current recipe calls for: " << endl;
-	cout << "Lemons: " << endl;
-	cout << "Sugar Cubes: " << endl;
-	cout << "Ice Cubes: " << endl;
+	Recipe recipe;
+
+	cout << "Your current recipe calls for the following :  "  << endl;
+	cout << "Lemons: " << recipe.changeLemonCount() << endl;
+	cout << "Sugar Cubes: " << recipe.changeSugarCount() << endl;
+	cout << "Ice Cubes: " << recipe.changeIceCount() << endl;
 }
+

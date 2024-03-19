@@ -4,7 +4,7 @@ public:
 
 	// variables ( Has A )
 	std::string name;
-	double purchasePrice;
+	double purchasePrice{};
 
 	int lemonCount = {};
 	int sugarCubeCount = {};
