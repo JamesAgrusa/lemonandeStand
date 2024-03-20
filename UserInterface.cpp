@@ -5,6 +5,7 @@
 #include "Inventory.h"
 #include "Recipe.h"
 #include "Day.h"
+#include "Weather.h"
 
 using namespace std;
 
@@ -70,7 +71,7 @@ void UserInterface::userDisplay()
 	// potentially get user name and have displayed in 'welcome' phrase
 	cout << "Welcome to Your Lemonand Stand!" << endl;
 	cout << "" << endl;
-	cout << "Todays forcast is: muffins " << endl;
+	cout << "No better day than today to pursue your dreams! " << endl;
 }
 
 void UserInterface::inventoryDisplay()

@@ -5,6 +5,7 @@
 #include "Inventory.h"
 #include "Recipe.h"
 #include "Day.h"
+#include "Weather.h"
 
 using namespace std;
 
@@ -105,18 +106,20 @@ char Game::goToStore()
 char Game::seeForcast()
 {
 	Day day;
+	
+
 	char choice;
 	cout << "" << endl;
 	cout << "this is the forcast for the week" << endl;
 	cout << "many varables coming up this week!! Better monitor the chart carefully to best prepare to make maximum profit :D" << endl;
 	cout << "" << endl;
-	cout << "Sunday forecast: " << day.weatherTemp() << endl;
-	cout << "Monday forecast: " << day.weatherTemp() << endl;
-	cout << "Tuesday forecast: " << day.weatherTemp() << endl;
-	cout << "Wednesday forecast: " << day.weatherTemp() << endl;
-	cout << "Thursday forecast: " << day.weatherTemp() << endl;
-	cout << "Friday forcast: " << day.weatherTemp() << endl;
-	cout << "Saturday forecast: " << day.weatherTemp() <<  endl;
+	cout << "Sunday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition <<  " out " << endl;
+	cout << "Monday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition << " out " << endl;
+	cout << "Tuesday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition <<  " out " << endl;
+	cout << "Wednesday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition << " out " << endl;
+	cout << "Thursday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition << " out " << endl;
+	cout << "Friday forcast: " << day.weatherTemp() << "  degrees and " << day.randomCondition << " out " << endl;
+	cout << "Saturday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition << " out " << endl;
 	cout << "" << endl;
 	cout << "Would you like to go back to main menu? Yes(Y) or No(N)" << endl;
 	cin >> choice;
