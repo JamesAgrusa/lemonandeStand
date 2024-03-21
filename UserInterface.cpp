@@ -31,6 +31,7 @@ void UserInterface::instructions()
 	cout << "" << endl << flush;
 	cout << "Keep in mind that the weather, the prices you set, and your recipe all super megaly affect the customers choice to buy!" << endl << flush;
 	cout << "Also keep in mind the forcast at the start of each day, when making your purchaeses and changing your recipe" << endl << flush;
+	cout << "This game will be ran for 7 days!" << endl;
 	cout << "" << endl << flush;
 	cout << "" << endl << flush;
 	cout << "***********************************************************************************************************" << endl;
@@ -69,7 +70,7 @@ void UserInterface::costDisplay()
 void UserInterface::userDisplay()
 {
 	// potentially get user name and have displayed in 'welcome' phrase
-	cout << "Welcome to Your Lemonand Stand!" << endl;
+	cout << "Welcome to Your Lemonand Stand Morning!" << endl;
 	cout << "" << endl;
 	cout << "No better day than today to pursue your dreams! " << endl;
 }

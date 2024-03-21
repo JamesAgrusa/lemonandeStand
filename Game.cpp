@@ -1,4 +1,7 @@
 #include <iostream>
+#include <cmath>
+#include <ctime>
+#include <cstdlib>
 #include "UserInterface.h"
 #include "Game.h"
 #include "Store.h"
@@ -106,23 +109,24 @@ char Game::goToStore()
 char Game::seeForcast()
 {
 	Day day;
-	
-
 	char choice;
+
 	cout << "" << endl;
 	cout << "this is the forcast for the week" << endl;
 	cout << "many varables coming up this week!! Better monitor the chart carefully to best prepare to make maximum profit :D" << endl;
 	cout << "" << endl;
-	cout << "Sunday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition <<  " out " << endl;
-	cout << "Monday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition << " out " << endl;
-	cout << "Tuesday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition <<  " out " << endl;
-	cout << "Wednesday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition << " out " << endl;
-	cout << "Thursday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition << " out " << endl;
-	cout << "Friday forcast: " << day.weatherTemp() << "  degrees and " << day.randomCondition << " out " << endl;
-	cout << "Saturday forecast: " << day.weatherTemp() << " degrees and " << day.randomCondition << " out " << endl;
+	cout << "H: Hazy\nS: Sunny\nC: Cloudy\nR: Rainy\nW: Windy\n";
+	cout << "" << endl;
+	
+	for (int i = 0; i < day.numberOfDays; i++)
+	{
+		cout << "Day " << i + 1 << " temperature of: " << day.weatherTemp() << " and " << day.weatherType() << endl;
+
+	}
 	cout << "" << endl;
 	cout << "Would you like to go back to main menu? Yes(Y) or No(N)" << endl;
 	cin >> choice;
+
 	if (choice == 'Y')
 	{
 		userChoice();

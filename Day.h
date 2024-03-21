@@ -3,11 +3,13 @@ class Day
 public:
 	// variables ( Has A )
 
-	string condition;
+	// char randomCondition;
 	int temperature{};
-	int randomCondition{};
+	char randomCondition{};
+	char RandomCondition{};
 	int min = 1;
 	int max = 7;
+	int numberOfDays{7};
 	 
 
 	// constructor
@@ -16,7 +18,7 @@ public:
 	// functions ( Can Do )
 
 	int weatherTemp();
-	string weatherType();
+	char weatherType();
 
 
 };

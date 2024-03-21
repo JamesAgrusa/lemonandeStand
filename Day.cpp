@@ -21,18 +21,20 @@ Day::Day()
 int Day::weatherTemp()
 {
 	srand(unsigned(time(0)));
-	int temperature = rand() % 30 + 90;
+	int temperature = rand() % 90;
 	return temperature;
 }
 
-string Day::weatherType()
+char Day::weatherType()
 {
 	Weather weather;
-	string randomCondition[] = {"Hazy", "Foggy", "Rainy", "Sunny", "Windy"};
+	char RandomCondition;
+	char randomCondition[] = { 'H', 'S', 'C', 'W', 'R'};
+	
 	srand(unsigned(time(0)));
-	randomCondition[rand() % 5];
+	RandomCondition = randomCondition[rand() % 5];
 	// make a list here for the weather to be randomly selected. 
 	
 
-	// return randomCondition;
+	return RandomCondition;
 }

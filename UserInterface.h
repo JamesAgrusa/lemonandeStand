@@ -2,7 +2,7 @@ class UserInterface
 {
 public:
 	// variables ( Has A )
-	
+	double pricePerCup{};
 	
 
 	// constructor 
