@@ -3,6 +3,9 @@ class UserInterface
 public:
 	// variables ( Has A )
 	double pricePerCup{};
+	int min = 0;
+	int max = 100;
+	int randomInt{};
 	
 
 	// constructor 
@@ -18,5 +21,6 @@ public:
 	void inventoryDisplay();
 	void recipeDisplay();
 	void costDisplay();
+	// int getRandomInt();
 	
 };

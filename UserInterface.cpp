@@ -1,5 +1,8 @@
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <cmath>
+#include <cstdlib>
 #include "UserInterface.h"
 #include "Store.h"
 #include "Inventory.h"
@@ -69,8 +72,11 @@ void UserInterface::costDisplay()
 
 void UserInterface::userDisplay()
 {
+	Day day;
+
 	// potentially get user name and have displayed in 'welcome' phrase
 	cout << "Welcome to Your Lemonand Stand Morning!" << endl;
+	cout << "todays forcast is: " << day.weatherTemp() << " and " << day.weatherType() << endl;
 	cout << "" << endl;
 	cout << "No better day than today to pursue your dreams! " << endl;
 }
@@ -97,6 +103,18 @@ void UserInterface::recipeDisplay()
 	cout << "Sugar Cubes: " << recipe.recipeCallsSugar << endl;
 	cout << "Ice Cubes: " << recipe.recipeCallsIce << endl;
 }
+
+// int UserInterface::getRandomInt()
+// {
+	// int randomInt;
+	// int min = 0;
+	// int max = 100;
+	// srand(unsigned(time(0)));
+	// randomInt = rand() % min + max;
+
+	// return randomInt;
+
+// }
 
 
 

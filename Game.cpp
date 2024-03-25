@@ -123,6 +123,7 @@ char Game::seeForcast()
 		cout << "Day " << i + 1 << " temperature of: " << day.weatherTemp() << " and " << day.weatherType() << endl;
 
 	}
+
 	cout << "" << endl;
 	cout << "Would you like to go back to main menu? Yes(Y) or No(N)" << endl;
 	cin >> choice;
