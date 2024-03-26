@@ -57,65 +57,89 @@ bool Game::userChoice()
 	return choice;
 }
 
-void Game::goToStore()
+float Game::goToStore()
 {
 	Store store;
-	
+	Inventory inventory;
+	UserInterface userInterface;
+
 	float userchoice;
 	double wallet = 20;
-	// double lemons{};
-	// double sugarcubes{};
-	// double icecubes{};
-	// double cups{};
 
 	cout << "" << endl;
-	cout << "Welcome to the store " << endl;
 	while (wallet >= 0)
 	{
 		cout << "Welcome to the store" << endl;
 		cout << "Menu: " << endl;
-		cout << "1    Lemons   $0.25" << endl;
+		cout << "1    Lemons        $0.25" << endl;
 		cout << "2    Sugar Cubes   $0.10" << endl;
-		cout << "3    Ice Cubes   $0.01" << endl;
-		cout << "4    Cups  $0.05" << endl;
+		cout << "3    Ice Cubes     $0.01" << endl;
+		cout << "4    Cups          $0.05" << endl;
 
 		cout << "\nYou have currently: \n" << "\nlemons: \n" << store.lemons << "\nsugarcubes: \n" << store.sugarcubes << "\nicecubes: \n" << store.icecubes << "\ncups: \n" << store.cups << endl;
 		cout << "" << endl;
 		cout << "your available credit is $: " << wallet << endl;
 		cout << "" << endl;
-		cout << "Type in the number that represents the fruit you want or type 5 to check out" << endl;
+		cout << "Type in the number that represents the item you want or type 5 to check out" << endl;
 		cin >> userchoice;
 
 		if (userchoice == 1)
 		{
-			store.lemons++;
-			wallet = wallet - 0.25;
+			// do i add a for loop inside here to get a typed amount insteaded off adding each one individually?
+			// also how do i get this info to store and show up on userinterface display?
+			// youre getting there James dont give up
+			// maybe add a CART system to where everything is store in a CART list/vector or INVENTORY list/vector
+			// closer than you were yesterday!!
+			int userchoice;
+			cout << "How many lemons: " << endl;
+			cin >> userchoice;
+			for (int i = 0; i >= userchoice; i++)
+			{
+				store.lemons++;
+				wallet = wallet - 0.25;
+			}
+			// for (int i = static_cast<int>(list->GetCount()) - 1; i >= 0; i--)
+			// return userchoice;
 		}
-		if (userchoice == 2)
+		else if (userchoice == 2)
 		{
 			store.sugarcubes++;
 			wallet = wallet - 0.10;
+			
+			// store.stillBuying();
 		}
-		if (userchoice == 3)
+		else if (userchoice == 3)
 		{
 			store.icecubes++;
 			wallet = wallet - 0.01;
+			
+			// store.stillBuying();
 		}
-		if (userchoice == 4)
+		else if (userchoice == 4)
 		{
 			store.cups++;
 			wallet = wallet - 0.05;
+			
+			// store.stillBuying();
+
 		}
-		if (userchoice == 5)
+		else if (userchoice == 5)
 		{
 			cout << "thankyou for shopping" << endl;
+			cout << "" << endl;
 			cout << "your total balance left is: " << wallet << endl;
 			cin.get();
-			// return 0;
+			store.stillBuying();	
+			
+		}
+		else
+		{
+			userInterface.startOfDay();
 		}
 	}
+	
 	cin.get();
-	// return 0;
+	return userchoice;
 	
 }
 

@@ -11,11 +11,11 @@ public:
 	// functions ( Can Do )
 	void runGame();
 	bool userChoice();
-	void goToStore();
+	float goToStore();
 	char seeForcast();
 	char changeRecipe();
 	void openStand();
 	bool MoreChoices();
 
-
+	// float goToStore();
 };
