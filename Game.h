@@ -11,7 +11,7 @@ public:
 	// functions ( Can Do )
 	void runGame();
 	bool userChoice();
-	char goToStore();
+	void goToStore();
 	char seeForcast();
 	char changeRecipe();
 	void openStand();

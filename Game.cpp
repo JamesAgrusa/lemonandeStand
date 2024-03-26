@@ -57,53 +57,66 @@ bool Game::userChoice()
 	return choice;
 }
 
-char Game::goToStore()
+void Game::goToStore()
 {
 	Store store;
-	char choice;
+	
+	float userchoice;
+	double wallet = 20;
+	// double lemons{};
+	// double sugarcubes{};
+	// double icecubes{};
+	// double cups{};
+
 	cout << "" << endl;
 	cout << "Welcome to the store " << endl;
-	cout << "What do you need to pick up today?" << endl;
-	cout << "\nA: Lemon - cost 0.25 per Lemon\nB: Sugar Cube - cost 0.10 per Sugar Cube\nC: Ice Cube - cost 0.01 per Ice Cube\nD: Cup - cost 0.05 per Cup\nE: Back to Main Menu\n";
-	cin >> choice;
-	if (choice == 'A')
+	while (wallet >= 0)
 	{
-		
-		cout << "You want to buy some lemons" << endl;
-		store.numberItemsToPurchase();
-		store.stillBuying();
-		
-	}
-	else if (choice == 'B')
-	{
-		cout << "You want to buy some sugar cubes" << endl;
-		store.numberItemsToPurchase();
-		store.stillBuying();
-	}
-	else if (choice == 'C')
-	{
-		cout << "You want to buy some ice cubes" << endl;
-		store.numberItemsToPurchase();
-		store.stillBuying();
-	}
-	else if (choice == 'D')
-	{
-		cout << "You want to buy some cups" << endl;
-		store.numberItemsToPurchase();
-		store.stillBuying();
-	}
-	else if (choice == 'E')
-	{
-		userInterface.startOfDay();
-		userChoice();
-	}
-	else
-	{
-		cout << "Please make another selection" << endl;
-		goToStore();
-	}
+		cout << "Welcome to the store" << endl;
+		cout << "Menu: " << endl;
+		cout << "1    Lemons   $0.25" << endl;
+		cout << "2    Sugar Cubes   $0.10" << endl;
+		cout << "3    Ice Cubes   $0.01" << endl;
+		cout << "4    Cups  $0.05" << endl;
 
-	return choice;
+		cout << "\nYou have currently: \n" << "\nlemons: \n" << store.lemons << "\nsugarcubes: \n" << store.sugarcubes << "\nicecubes: \n" << store.icecubes << "\ncups: \n" << store.cups << endl;
+		cout << "" << endl;
+		cout << "your available credit is $: " << wallet << endl;
+		cout << "" << endl;
+		cout << "Type in the number that represents the fruit you want or type 5 to check out" << endl;
+		cin >> userchoice;
+
+		if (userchoice == 1)
+		{
+			store.lemons++;
+			wallet = wallet - 0.25;
+		}
+		if (userchoice == 2)
+		{
+			store.sugarcubes++;
+			wallet = wallet - 0.10;
+		}
+		if (userchoice == 3)
+		{
+			store.icecubes++;
+			wallet = wallet - 0.01;
+		}
+		if (userchoice == 4)
+		{
+			store.cups++;
+			wallet = wallet - 0.05;
+		}
+		if (userchoice == 5)
+		{
+			cout << "thankyou for shopping" << endl;
+			cout << "your total balance left is: " << wallet << endl;
+			cin.get();
+			// return 0;
+		}
+	}
+	cin.get();
+	// return 0;
+	
 }
 
 char Game::seeForcast()

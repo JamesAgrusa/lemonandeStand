@@ -6,6 +6,7 @@
 #include "Inventory.h"
 #include "Recipe.h"
 #include "Day.h"
+#include "Weather.h"
 
 using namespace std;
 
@@ -43,10 +44,3 @@ char Store::stillBuying()
 	return choice;
 }
 
-void Store::itemAquired()
-{
-	for (int i = 0; i < numberOfItems; i++)
-	{
-
-	}
-}
