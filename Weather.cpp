@@ -1,13 +1,12 @@
-#include <cmath>
-#include <cstdlib>
 #include <iostream>
+#include <vector>
+#include <iomanip>
 #include <string>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
+#include "Stand.h"
 #include "UserInterface.h"
-#include "Game.h"
-#include "Store.h"
-#include "Inventory.h"
-#include "Recipe.h"
-#include "Day.h"
 #include "Weather.h"
 
 using namespace std;
@@ -17,28 +16,34 @@ Weather::Weather()
 
 }
 
-void Weather::Hazy()
+int Weather::getRandomWeather()
 {
-	
-	cout << "Hazy" << endl;
+	enum class WeatherType { Sunny, Cloudy, Rainy, Snowy };
+	int randNum = rand() % 4;
+	return randNum;
 }
 
-void Weather::Foggy()
+int Weather::getRandomTemp(int minTemp, int maxTemp)
 {
-	cout << "Foggy" << endl;
+	return rand() % (maxTemp - minTemp + 1) + minTemp;
 }
 
-void Weather::Rainy()
+void Weather::getForcast()
 {
-	cout << "Rainy" << endl;
+	enum WeatherType { Sunny, Cloudy, Rainy, Snowy };
+	Weather weather;
+	srand(time(nullptr));
+	const string weatherTypes[] = { "Sunny", "Cloudy", "Rainy", "Snowy" };
+	const int minTemperature = 50;
+	const int maxTemperature = 100;
+
+	cout << "Weekly forecast: " << endl;
+	for (int day = 1; day <= 7; ++day)
+	{
+		getRandomWeather();
+		int temperature = getRandomTemp(minTemperature, maxTemperature);
+
+		cout << "Day " << day << " :" << weatherTypes << " , Temperature: " << temperature << "F" << endl;
+	}
 }
 
-void Weather::Sunny()
-{
-	cout << "Sunny" << endl;
-}
-
-void Weather::Windy()
-{
-	cout << "Windy" << endl;
-}

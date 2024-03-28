@@ -1,15 +1,16 @@
 class Weather
 {
 public:
-	// Variables ( Has A )
-	
+
 	Weather();
 
-	// functions ( Can Do )
-	void Hazy();
-	void Foggy();
-	void Rainy();
-	void Sunny();
-	void Windy();
+	int getRandomWeather();
+	int getRandomTemp(int minTemp, int maxTemp);
+	void getForcast();
+
+
+private:
+
+	
 
 };
