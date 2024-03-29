@@ -4,6 +4,8 @@
 #include "Stand.h"
 #include "UserInterface.h"
 #include "Weather.h"
+#include "Recipe.h"
+#include "Customer.h"
 
 using namespace std;
 
@@ -21,18 +23,18 @@ void Stand::buyIngredients()
 	cout << "Here you will get an oppertinity to buy the items available to you!" << endl;
 	cout << "Items available" << endl;
 	cout << "" << endl;
-	cout << "Lemons: $2\nSugar: $1\nIce: $1\nCups: $2" << endl;
+	cout << "Lemons: $0.05\nSugar: $0.02\nIce: $0.01\nCups: $0.10" << endl;
 	cout << "" << endl;
-	cout << "Enter the amount of lemons you want: " << endl;
+	cout << "Enter the amount of lemons you want: ";
 	cin >> lemonsToBuy;
-	cout << "Enter the amount of sugar you want: " << endl;
+	cout << "Enter the amount of sugar you want: ";
 	cin >> sugarToBuy;
-	cout << "Enter the amount of ice  you want: " << endl;
+	cout << "Enter the amount of ice  you want: ";
 	cin >> iceToBuy;
-	cout << "Enter the amount of cups you want: " << endl;
+	cout << "Enter the amount of cups you want: ";
 	cin >> cupsToBuy;
 
-	int totalCost = lemonsToBuy * 2 + sugarToBuy * 1 + iceToBuy * 1 + cupsToBuy * 2;
+	int totalCost = lemonsToBuy * 0.05 + sugarToBuy * 0.02 + iceToBuy * .01 + cupsToBuy * .10;
 	if (totalCost > money)
 	{
 		cout << "You dont have enough money to buy this much" << endl;
@@ -46,7 +48,7 @@ void Stand::buyIngredients()
 
 	cout << "" << endl;
 	cout << "Ingredients purchased successfully" << endl;
-	stillBuying();
+	// stillBuying();
 }
 void Stand::displayStatus()
 {

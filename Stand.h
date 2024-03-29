@@ -2,6 +2,14 @@ class Stand
 {
 public:
 
+	double pricePerCup;
+	int lemons;
+	int sugar;
+	int ice;
+	int cups;
+
+	double money;
+
 	Stand();
 
 	void buyIngredients();
@@ -10,12 +18,7 @@ public:
 
 	
 private:
-	int lemons;
-	int sugar;
-	int ice;
-	int cups;
-	double pricePerCup;
-	double money;
+	
 
 	
 };

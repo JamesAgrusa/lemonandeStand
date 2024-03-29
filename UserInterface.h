@@ -4,5 +4,7 @@ public:
 
 	UserInterface();
 
-	char userChoice();
+	void userChoice();
+	char done();
+	void seeProfit();
 };
