@@ -48,10 +48,14 @@ public:
     int sugar;
     int ice;
     int cups;
+    int cupsSold;
     double pricePerCup;
     double money;
     vector<Customer> customers;
     vector<LemonadeStand> lemon;
+    vector<LemonadeStand> icecube;
+    vector<LemonadeStand> sugarcube;
+    vector<LemonadeStand> cup;
 
     LemonadeStand();
 
@@ -64,7 +68,7 @@ public:
     void showInventory();
 
     // add remove from inventory stuff here
-    void updateLemons();
+    
 };
 
 class Weather
@@ -117,6 +121,29 @@ public:
     int changeLemonCount();
     int changeSugarCount();
     int changeIceCount();
+
+    void makeNewPitcher();
+    void removeLemonsFromInventory();
+    void removeSugarFromInventory();
+    void removeIceFromInventory();
+    void removeCupsFromInventory();
+    bool checkEnoughLemons();
+    bool checkEnoughIce();
+    bool checkEnoughSugar();
+    bool checkEnoughCups();
+    bool checkInventory();
+    bool sellCupOfLemonade();
+};
+
+class Pitcher
+{
+public:
+    int cupsLeftInPitcher = 0;
+
+    Pitcher();
+
+    void fillUpPitcher();
+    void fillCupLemonade();
 };
 
 int main() {
@@ -200,6 +227,7 @@ void LemonadeStand::runStand()
         stand.showInventory();
         cout << "" << endl;
         stand.generateCustomers();
+        player.sellCupOfLemonade(); // work on wiggling this into the game!! 
         stand.serveCustomers();
         stand.calculateAndDisplayProfit();
     }
@@ -212,13 +240,6 @@ void LemonadeStand::showInventory()
     cout << "Sugar: " << sugar << endl;
     cout << "Ice: " << ice << endl;
     cout << "Cups: " << cups << endl;
-}
-
-void LemonadeStand::updateLemons()
-{
-    Player player;
-    player.recipeCallsLemon;
-
 }
 
 Weather::Weather()
@@ -359,4 +380,152 @@ void Player::changeRecipe()
     changeLemonCount();
     changeSugarCount();
     changeIceCount();
+}
+
+void Player::makeNewPitcher()
+{
+    Pitcher pitcher;
+    removeLemonsFromInventory();
+    removeSugarFromInventory();
+    removeIceFromInventory();
+    pitcher.fillCupLemonade();
+}
+
+void Player::removeLemonsFromInventory()
+{
+    for (int i = 0; i < recipeCallsLemon; i++)
+    {
+        LemonadeStand stand;
+        stand.lemon;
+    }
+}
+
+void Player::removeSugarFromInventory()
+{
+    for (int i = 0; i < recipeCallsSugar; i++)
+    {
+        LemonadeStand stand;
+        stand.sugarcube;
+    }
+}
+
+void Player::removeIceFromInventory()
+{
+    for (int i = 0; i < recipeCallsIce; i++)
+    {
+        LemonadeStand stand;
+        stand.icecube;
+    }
+}
+
+void Player::removeCupsFromInventory()
+{
+    LemonadeStand stand;
+    stand.cups -= stand.cupsSold;
+}
+
+bool Player::checkEnoughLemons()
+{
+    LemonadeStand stand;
+    Player player;
+    if (stand.lemons >= player.recipeCallsLemon)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Player::checkEnoughSugar()
+{
+    LemonadeStand stand;
+    Player player;
+    if (stand.sugar >= player.recipeCallsSugar)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Player::checkEnoughIce()
+{
+    LemonadeStand stand;
+    Player player;
+    if (stand.ice >= player.recipeCallsIce)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Player::checkEnoughCups()
+{
+    LemonadeStand stand;
+    Player player;
+    if (stand.cups >= 1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool Player::checkInventory()
+{
+    bool enoughLemons = checkEnoughLemons();
+    bool enoughIce = checkEnoughIce();
+    bool enoughSugar = checkEnoughSugar();
+    bool enoughCups = checkEnoughCups();
+    if (enoughLemons == true && enoughIce == true && enoughSugar == true && enoughCups == true)
+    {
+        makeNewPitcher();
+        return true;
+    }
+    else
+    {
+        cout << "You have ran out of product!" << endl;
+        return false;
+    }
+}
+
+bool Player::sellCupOfLemonade()
+{
+    Pitcher pitcher;
+    LemonadeStand stand;
+    if ((pitcher.cupsLeftInPitcher >= 1) && (stand.cups >= 1))
+    {
+        pitcher.fillCupLemonade();
+        removeCupsFromInventory();
+        return true;
+    }
+    else
+    {
+        checkInventory();
+        return false;
+    }
+}
+
+Pitcher::Pitcher()
+{
+
+}
+
+void Pitcher::fillUpPitcher()
+{
+    cupsLeftInPitcher = 14;
+}
+
+void Pitcher::fillCupLemonade()
+{
+    cupsLeftInPitcher -= 1;
 }
