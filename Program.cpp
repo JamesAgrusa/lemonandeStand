@@ -33,8 +33,9 @@ public:
     double chanceOfBuying; // Probability of buying a glass of lemonade
 
     Customer() {
-        willingnessToPay = (rand() % 50 + 50) / 100.0; 
-        chanceOfBuying = (rand() % 50 + 50) / 100.0;            
+        
+        willingnessToPay = (rand() % 50 + 50) / 100.0;
+        chanceOfBuying = (rand() % 50 + 50) / 100.0;
     }
 
     // Getters
@@ -72,7 +73,7 @@ public:
     void showInventory();
 
     // add remove from inventory stuff here
-    
+
 };
 
 class Weather
@@ -96,7 +97,7 @@ public:
     void seeForcast();
     int weatherDemand();
     string weatherType();
-    
+
 };
 
 class Game
@@ -108,7 +109,7 @@ public:
 
     void runGame();
     char playAgain();
-   
+
 };
 
 class UserInterface
@@ -134,7 +135,7 @@ public:
     int changeSugarCount();
     int changeIceCount();
 
-   
+
 };
 
 
@@ -172,7 +173,7 @@ void LemonadeStand::setPricePerCup()
 
 void LemonadeStand::generateCustomers()
 {
-    int customerCount = rand() % 11 + 5; 
+    int customerCount = rand() % 11 + 5;
     customers.clear();
     for (int i = 0; i < customerCount; i++) {
         customers.push_back(Customer());
@@ -232,13 +233,13 @@ void LemonadeStand::runStand()
         cout << "" << endl;
         stand.generateCustomers();
         stand.serveCustomers();
-        stand.calculateAndDisplayProfit();        
+        stand.calculateAndDisplayProfit();
     }
     game.playAgain();
 }
 
 void LemonadeStand::showInventory()
-{   
+{
     cout << "Inventory: " << endl;
     cout << "Lemons: " << lemons << endl;
     cout << "Sugar: " << sugar << endl;
@@ -274,35 +275,55 @@ void Weather::seeForcast()
     for (int i = 0; i < weather.numberOfDays / 7; i++)
     {
         cout << "Todays " << "temperature is " << weather.temperature << " degrees and " << weather.weatherType() << endl;
-    }    
+    }
 }
 
 int Weather::weatherDemand()
 {
     Weather weather;
     Customer customer;
-    int demand = 0;
-        if (weather.randomCondition = "Sunny" && weather.temperature > 55) 
-        {
-            demand = 25; // High demand
-        }
-        else if (weather.randomCondition = "Windy" && weather.temperature > 55) 
-        {
-            demand = 25; 
-        }
-        else if (weather.randomCondition = "Cloudy" && weather.temperature > 55)
-        {
-            demand = 10; 
-        }
-        else if (weather.randomCondition = "Hazy" && weather.temperature > 55)
-        {
-            demand = 5;
-        }
-        else if (weather.randomCondition = "Rainy" && weather.temperature > 55)
-        {
-            demand = 0; // Low demand
-        }
-        return demand;
+    int demand = customer.chanceOfBuying;
+    if (weather.randomCondition = "Sunny" && weather.temperature > 50) // hot and sunny best case scenerio
+    {
+        demand = 30;
+    }
+    else if (weather.randomCondition = "Sunny" && weather.temperature < 50) // cold and sunny
+    {
+        demand = 19;
+    }
+    else if (weather.randomCondition = "Windy" && weather.temperature > 50) // hot and windy
+    {
+        demand = 20;
+    }
+    else if (weather.randomCondition = "Windy" && weather.temperature < 50) // cold and windy
+    {
+        demand = 11;
+    }
+    else if (weather.randomCondition = "Cloudy" && weather.temperature > 50) // hot and cloudy
+    {
+        demand = 25;
+    }
+    else if (weather.randomCondition = "Cloudy" && weather.temperature < 50) // cold and cloudy
+    {
+        demand = 15;
+    }
+    else if (weather.randomCondition = "Hazy" && weather.temperature > 50) // hot and hazy
+    {
+        demand = 10;
+    }
+    else if (weather.randomCondition = "Hazy" && weather.temperature < 50) // cold and hazy
+    {
+        demand = 9;
+    }
+    else if (weather.randomCondition = "Rainy" && weather.temperature > 50) // hot and rainy
+    {
+        demand = 5;
+    }
+    else if (weather.randomCondition = "Rainy" && weather.temperature < 50) // cold and rainy worst case scenerio
+    {
+        demand = 4;
+    }
+    return demand;
 }
 
 Game::Game()
@@ -316,7 +337,7 @@ void Game::runGame()
     LemonadeStand stand;
     userinterface.gameIntro();
     userinterface.gameInstructions();
-    stand.runStand();    
+    stand.runStand();
 }
 
 char Game::playAgain()
