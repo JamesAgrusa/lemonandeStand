@@ -1,24 +1,3 @@
-// basic lemonade stand gameplay present (done)
-// weather system (done)
-// be able to go to the store and buy lemons, sugar, ice, and cups (done)
-// price of product as well as weather to affect sales of the lemonade(done)
-// each customer to be its own seperate object with its own chance of buying a glass of lemonade(done)
-// make a recipe for our lemonade to be able to use x-amount of lemons, sugar, ice (done)
-// playable for at least 7 days(done)
-// daily profit or loss displyaed at the end of each day, and a running total of all profit that is also displayed at the end of each day(done)
-// 
-// Classes needed: Program(done), Weather(done), Customer(done), Game(done), Player(done), Store
-// , Day, UserInterface(done)
-// you got this James <3
-// Lemonade Stand take 5 D: !!
-
-// variables ( Has A )
-
-// constructor
-
-
-// fucntions ( Can Do )
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -33,12 +12,12 @@ public:
     double chanceOfBuying; // Probability of buying a glass of lemonade
 
     Customer() {
-        
+
         willingnessToPay = (rand() % 50 + 50) / 100.0;
         chanceOfBuying = (rand() % 50 + 50) / 100.0;
     }
 
-    // Getters
+    
     double getWillingnessToPay() const { return willingnessToPay; }
     double getChanceOfBuying() const { return chanceOfBuying; }
 };
@@ -57,10 +36,6 @@ public:
     double totalProfit{};
     vector<double> weeklyProfits;
     vector<Customer> customers;
-    vector<LemonadeStand> lemon;
-    vector<LemonadeStand> icecube;
-    vector<LemonadeStand> sugarcube;
-    vector<LemonadeStand> cup;
 
     LemonadeStand();
 
@@ -71,9 +46,6 @@ public:
     double calculateAndDisplayProfit();
     void runStand();
     void showInventory();
-
-    // add remove from inventory stuff here
-
 };
 
 class Weather
@@ -109,7 +81,6 @@ public:
 
     void runGame();
     char playAgain();
-
 };
 
 class UserInterface
@@ -134,8 +105,6 @@ public:
     int changeLemonCount();
     int changeSugarCount();
     int changeIceCount();
-
-
 };
 
 
@@ -364,13 +333,13 @@ UserInterface::UserInterface()
 
 void UserInterface::gameIntro()
 {
+    cout << "***********************************************************************************************************" << endl;
     cout << "Hello, and welcome!" << endl;
-    cout << "" << endl;
+   
 }
 
 void UserInterface::gameInstructions()
 {
-    cout << "***********************************************************************************************************" << endl;
     cout << "" << endl;
     cout << "Here we are going to be running our own lemonade stand, how exciting!!" << endl;
     cout << "" << endl;
@@ -425,4 +394,3 @@ void Player::changeRecipe()
     changeSugarCount();
     changeIceCount();
 }
-
