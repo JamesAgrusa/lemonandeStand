@@ -12,12 +12,10 @@ public:
     double chanceOfBuying; // Probability of buying a glass of lemonade
 
     Customer() {
-
-        willingnessToPay = (rand() % 50 + 50) / 100.0;
+        willingnessToPay = rand() % 15 + 2;
         chanceOfBuying = (rand() % 50 + 50) / 100.0;
     }
 
-    
     double getWillingnessToPay() const { return willingnessToPay; }
     double getChanceOfBuying() const { return chanceOfBuying; }
 };
@@ -32,9 +30,6 @@ public:
     int cupsSold;
     double pricePerCup;
     double money;
-    double dailyProfit{};
-    double totalProfit{};
-    vector<double> weeklyProfits;
     vector<Customer> customers;
 
     LemonadeStand();
@@ -53,8 +48,6 @@ class Weather
 public:
     // variables ( Has A )
     enum WeatherCondition { SUNNY, CLOUDY, RAINY, HAZY, WINDY };
-    WeatherCondition forecast;
-    WeatherCondition actual;
     int temperature{};
     char randomCondition{};
     char RandomCondition{};
@@ -67,9 +60,8 @@ public:
 
     // fucntions ( Can Do )
     void seeForcast();
-    int weatherDemand();
+    double weatherDemand();
     string weatherType();
-
 };
 
 class Game
@@ -88,7 +80,6 @@ class UserInterface
 public:
     UserInterface();
 
-    void gameIntro();
     void gameInstructions();
 };
 
@@ -142,7 +133,7 @@ void LemonadeStand::setPricePerCup()
 
 void LemonadeStand::generateCustomers()
 {
-    int customerCount = rand() % 11 + 5;
+    int customerCount = rand() % 15 + 5; // generates random customers between 5 - 19
     customers.clear();
     for (int i = 0; i < customerCount; i++) {
         customers.push_back(Customer());
@@ -158,27 +149,22 @@ void LemonadeStand::serveCustomers()
     int cupsSold = min(static_cast<int>(customers.size()), cups);
     money += cupsSold * pricePerCup;
     demand--;
-    cups -= cupsSold;
-    lemons -= player.changeLemonCount() * cupsSold;
-    ice -= player.changeIceCount() * cupsSold;
-    sugar -= player.changeSugarCount() * cupsSold;
+    cups -= cupsSold; 
+    lemons -= player.changeLemonCount() * cupsSold; // updates inventory
+    ice -= player.changeIceCount() * cupsSold; // updates inventory
+    sugar -= player.changeSugarCount() * cupsSold; // updates inventory
 
     cout << "You sold " << cupsSold << " cups of lemonade!\n";
 }
 
 double LemonadeStand::calculateAndDisplayProfit()
 {
-    totalProfit = 0;
     double revenue = customers.size() * pricePerCup;
     double expenses = lemons * 0.20 + sugar * 0.10 + ice * 0.05 + cups * 0.15;
     double profit = revenue - expenses;
-    weeklyProfits.push_back(profit);
     money += profit;
-    for (double dailyProfit : weeklyProfits)
-    {
-        totalProfit += dailyProfit;
-    }
     cout << "" << endl;
+    cout << "You spent: $" << expenses << " for the day on supplies" << endl;
     cout << "Daily Profit/Loss: $" << profit << endl;
     cout << "Total Profit/Loss: $" << money << endl;
     return profit;
@@ -188,9 +174,8 @@ void LemonadeStand::runStand()
 {
     LemonadeStand stand;
     Weather weather;
-    Player player;
     Game game;
-    for (int day = 1; day <= 7; ++day) {
+    for (int day = 1; day <= 7; ++day) { // the game will run through this loop 7 times
         cout << "\nDay " << day << ":\n";
         weather.seeForcast();
         cout << "" << endl;
@@ -218,25 +203,18 @@ void LemonadeStand::showInventory()
 
 Weather::Weather()
 {
-    forecast = static_cast<WeatherCondition>(rand() % 3);
-    actual = static_cast<WeatherCondition>(rand() % 3);
-    temperature = rand() % 40 + 60;
+    temperature = rand() % 60 + 30;
 }
-
 
 string Weather::weatherType()
 {
     Weather weather;
     string RandomCondition;
-
     string randomCondition[] = { "Hazy", "Sunny", "Cloudy", "Windy", "Rainy" };
-
     srand(unsigned(time(0)));
-    RandomCondition = randomCondition[rand() % 5];
+    RandomCondition = randomCondition[rand() % 5]; // random weather generated between the conditions made above
     return RandomCondition;
 }
-
-
 
 void Weather::seeForcast()
 {
@@ -247,50 +225,50 @@ void Weather::seeForcast()
     }
 }
 
-int Weather::weatherDemand()
+double Weather::weatherDemand()
 {
     Weather weather;
     Customer customer;
-    int demand = customer.chanceOfBuying;
+    double demand = customer.chanceOfBuying;
     if (weather.randomCondition = "Sunny" && weather.temperature > 50) // hot and sunny best case scenerio
     {
-        demand = 30;
+        demand = (rand() % 50 + 50) / 100.0;
     }
     else if (weather.randomCondition = "Sunny" && weather.temperature < 50) // cold and sunny
     {
-        demand = 19;
+        demand = (rand() % 50 + 50) / 100.0;
     }
     else if (weather.randomCondition = "Windy" && weather.temperature > 50) // hot and windy
     {
-        demand = 20;
+        demand = (rand() % 50 + 50) / 100.0;
     }
     else if (weather.randomCondition = "Windy" && weather.temperature < 50) // cold and windy
     {
-        demand = 11;
+        demand = (rand() % 50 + 50) / 100.0;
     }
     else if (weather.randomCondition = "Cloudy" && weather.temperature > 50) // hot and cloudy
     {
-        demand = 25;
+        demand = (rand() % 50 + 50) / 100.0;
     }
     else if (weather.randomCondition = "Cloudy" && weather.temperature < 50) // cold and cloudy
     {
-        demand = 15;
+        demand = (rand() % 50 + 50) / 100.0;
     }
     else if (weather.randomCondition = "Hazy" && weather.temperature > 50) // hot and hazy
     {
-        demand = 10;
+        demand = (rand() % 50 + 50) / 100.0;
     }
     else if (weather.randomCondition = "Hazy" && weather.temperature < 50) // cold and hazy
     {
-        demand = 9;
+        demand = (rand() % 50 + 50) / 100.0;
     }
     else if (weather.randomCondition = "Rainy" && weather.temperature > 50) // hot and rainy
     {
-        demand = 5;
+        demand = (rand() % 50 + 50) / 100.0;
     }
     else if (weather.randomCondition = "Rainy" && weather.temperature < 50) // cold and rainy worst case scenerio
     {
-        demand = 4;
+        demand = (rand()) % 10 + 20;
     }
     return demand;
 }
@@ -304,7 +282,6 @@ void Game::runGame()
 {
     UserInterface userinterface;
     LemonadeStand stand;
-    userinterface.gameIntro();
     userinterface.gameInstructions();
     stand.runStand();
 }
@@ -331,15 +308,10 @@ UserInterface::UserInterface()
 
 }
 
-void UserInterface::gameIntro()
+void UserInterface::gameInstructions()
 {
     cout << "***********************************************************************************************************" << endl;
     cout << "Hello, and welcome!" << endl;
-   
-}
-
-void UserInterface::gameInstructions()
-{
     cout << "" << endl;
     cout << "Here we are going to be running our own lemonade stand, how exciting!!" << endl;
     cout << "" << endl;
@@ -363,7 +335,6 @@ Player::Player()
 
 int Player::changeLemonCount()
 {
-
     int recipeCallslemon;
     cout << "How many lemons do you want in your recipe: ";
     cin >> recipeCallslemon;
@@ -372,7 +343,6 @@ int Player::changeLemonCount()
 
 int Player::changeSugarCount()
 {
-
     int choice = recipeCallsSugar;
     cout << "How many sugar cubes do you want in your recipe: ";
     cin >> choice;
@@ -381,7 +351,6 @@ int Player::changeSugarCount()
 
 int Player::changeIceCount()
 {
-
     int choice = recipeCallsIce;
     cout << "How many ice cubes do you want in your recipe: ";
     cin >> choice;
