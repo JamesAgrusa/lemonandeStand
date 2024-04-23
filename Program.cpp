@@ -8,14 +8,12 @@ using namespace std;
 
 class Customer {
 public:
-    double chanceOfBuying; // Probability of buying a glass of lemonade
+    double chanceOfBuying; // Probability of buying a glass of lemonade based on weather
     double demand;
     
     Customer() {
-        chanceOfBuying = demand;//(rand() % 50 + 50) / 100.0; 
+        chanceOfBuying = demand; //demand is determined by weather
     }
-
-    double getChanceOfBuying() const { return chanceOfBuying; }
 };
 
 class LemonadeStand
@@ -44,15 +42,12 @@ public:
 class Weather
 {
 public:
-    // variables ( Has A )
-    enum WeatherCondition { SUNNY, CLOUDY, RAINY, HAZY, WINDY };
+    // variables ( Has A )    
     int temperature{};
     char randomCondition{};
     char RandomCondition{};
     int numberOfDays{ 7 };
-    int singleDay{};
-    int demand{};
-
+   
     // constructor
     Weather();
 
@@ -106,7 +101,7 @@ int main() {
     return 0;
 }
 
-LemonadeStand::LemonadeStand() : lemons(0), sugar(0), ice(0), cups(0), pricePerCup(1.0), money(50.0) {}
+LemonadeStand::LemonadeStand() : lemons(0), sugar(0), ice(0), cups(0), pricePerCup(0), money(50.0) {}
 
 void LemonadeStand::buyIngredients()
 {
@@ -131,10 +126,7 @@ void LemonadeStand::setPricePerCup()
 
 void LemonadeStand::generateCustomers()
 {
-    Weather weather;
-
-    int customerCount = rand() % 20 + 5; // generates random customers between 5 - 24
-    
+    int customerCount = rand() % 20 + 5; // generates random customers between 5 - 24  
     customers.clear();
     for (int i = 0; i < customerCount; i++) {
         customers.push_back(Customer());
@@ -142,18 +134,13 @@ void LemonadeStand::generateCustomers()
 }
 
 void LemonadeStand::serveCustomers()
-{
-    Weather weather;
+{  
     Player player;
-
-    double demand = weather.weatherDemand();
     int cupsSold = min(static_cast<int>(customers.size()), cups);
-    money += cupsSold * pricePerCup;
     cups -= cupsSold; 
     lemons -= player.changeLemonCount() * cupsSold; // updates inventory
     ice -= player.changeIceCount() * cupsSold; // updates inventory
     sugar -= player.changeSugarCount() * cupsSold; // updates inventory
-
     cout << "You sold " << cupsSold << " cups of lemonade!\n";
 }
 
@@ -175,7 +162,7 @@ void LemonadeStand::runStand()
     LemonadeStand stand;
     Weather weather;
     Game game;
-    for (int day = 1; day <= 7; ++day) { // the game will run through this loop 7 times
+    for (int day = 1; day <= 7; ++day) { // the game will run through this loop 7 times, then game over!
         cout << "\nDay " << day << ": ";
         weather.seeForcast();
         cout << "" << endl;
@@ -209,7 +196,6 @@ Weather::Weather()
 
 string Weather::weatherType()
 {
-    Weather weather;
     string RandomCondition;
     string randomCondition[] = { "Hazy", "Sunny", "Cloudy", "Windy", "Rainy" };
     srand(unsigned(time(0)));
@@ -265,44 +251,13 @@ double Weather::weatherDemand()
     }
     else if (weather.randomCondition = "Rainy" && weather.temperature > 50) // hot and rainy
     {
-        customer.demand = rand() % 10 + 5;
+        customer.demand = rand() % 55 + 35;
     }
     else if (weather.randomCondition = "Rainy" && weather.temperature < 50) // cold and rainy
     {
-        customer.demand = rand() % 10 + 5;
+        customer.demand = rand() % 45 + 25;
     }
     return demand;
-}
-
-Game::Game()
-{
-
-}
-
-void Game::runGame()
-{
-    UserInterface userinterface;
-    LemonadeStand stand;
-    userinterface.gameInstructions();
-    stand.runStand();
-}
-
-char Game::playAgain()
-{
-    char choice;
-    cout << "Game Over" << endl;
-    cout << "You successfully(more or less) ran your own lemonade stand!!" << endl;
-    cout << "Would you like to play again? Yes(Y) or No(N)" << endl;
-    cin >> choice;
-    if (choice == 'Y')
-    {
-        runGame();
-    }
-    else
-    {
-        cout << "Thanks for playing!" << endl;
-    }
-    return choice;
 }
 
 UserInterface::UserInterface()
@@ -358,4 +313,35 @@ void Player::changeRecipe()
     changeLemonCount();
     changeSugarCount();
     changeIceCount();
+}
+
+Game::Game()
+{
+
+}
+
+void Game::runGame()
+{
+    UserInterface userinterface;
+    LemonadeStand stand;
+    userinterface.gameInstructions();
+    stand.runStand();
+}
+
+char Game::playAgain()
+{
+    char choice;
+    cout << "Game Over" << endl;
+    cout << "You successfully(more or less) ran your own lemonade stand!!" << endl;
+    cout << "Would you like to play again? Yes(Y) or No(N)" << endl;
+    cin >> choice;
+    if (choice == 'Y')
+    {
+        runGame();
+    }
+    else
+    {
+        cout << "Thanks for playing!" << endl;
+    }
+    return choice;
 }
