@@ -8,15 +8,13 @@ using namespace std;
 
 class Customer {
 public:
-    double willingnessToPay; // How much the customer is willing to pay for a glass of lemonade
     double chanceOfBuying; // Probability of buying a glass of lemonade
-
+    double demand;
+    
     Customer() {
-        willingnessToPay = rand() % 15 + 2;
-        chanceOfBuying = (rand() % 50 + 50) / 100.0;
+        chanceOfBuying = demand;//(rand() % 50 + 50) / 100.0; 
     }
 
-    double getWillingnessToPay() const { return willingnessToPay; }
     double getChanceOfBuying() const { return chanceOfBuying; }
 };
 
@@ -133,7 +131,10 @@ void LemonadeStand::setPricePerCup()
 
 void LemonadeStand::generateCustomers()
 {
-    int customerCount = rand() % 15 + 5; // generates random customers between 5 - 19
+    Weather weather;
+
+    int customerCount = rand() % 20 + 5; // generates random customers between 5 - 24
+    
     customers.clear();
     for (int i = 0; i < customerCount; i++) {
         customers.push_back(Customer());
@@ -145,10 +146,9 @@ void LemonadeStand::serveCustomers()
     Weather weather;
     Player player;
 
-    int demand = weather.weatherDemand();
+    double demand = weather.weatherDemand();
     int cupsSold = min(static_cast<int>(customers.size()), cups);
     money += cupsSold * pricePerCup;
-    demand--;
     cups -= cupsSold; 
     lemons -= player.changeLemonCount() * cupsSold; // updates inventory
     ice -= player.changeIceCount() * cupsSold; // updates inventory
@@ -164,7 +164,7 @@ double LemonadeStand::calculateAndDisplayProfit()
     double profit = revenue - expenses;
     money += profit;
     cout << "" << endl;
-    cout << "You spent: $" << expenses << " for the day on supplies" << endl;
+    cout << "You spent: $" << expenses << " for the day on supplies" << endl;    
     cout << "Daily Profit/Loss: $" << profit << endl;
     cout << "Total Profit/Loss: $" << money << endl;
     return profit;
@@ -176,7 +176,7 @@ void LemonadeStand::runStand()
     Weather weather;
     Game game;
     for (int day = 1; day <= 7; ++day) { // the game will run through this loop 7 times
-        cout << "\nDay " << day << ":\n";
+        cout << "\nDay " << day << ": ";
         weather.seeForcast();
         cout << "" << endl;
         stand.showInventory();
@@ -189,6 +189,7 @@ void LemonadeStand::runStand()
         stand.serveCustomers();
         stand.calculateAndDisplayProfit();
     }
+    cout << "" << endl;
     game.playAgain();
 }
 
@@ -230,45 +231,45 @@ double Weather::weatherDemand()
     Weather weather;
     Customer customer;
     double demand = customer.chanceOfBuying;
-    if (weather.randomCondition = "Sunny" && weather.temperature > 50) // hot and sunny best case scenerio
+    if (weather.randomCondition = "Sunny" && weather.temperature > 50) // hot and sunny
     {
-        demand = (rand() % 50 + 50) / 100.0;
+        customer.demand = rand() % 100 + 80;
     }
     else if (weather.randomCondition = "Sunny" && weather.temperature < 50) // cold and sunny
     {
-        demand = (rand() % 50 + 50) / 100.0;
+        customer.demand = rand() % 90 + 70;
     }
     else if (weather.randomCondition = "Windy" && weather.temperature > 50) // hot and windy
     {
-        demand = (rand() % 50 + 50) / 100.0;
+        customer.demand = rand() % 85 + 65;
     }
     else if (weather.randomCondition = "Windy" && weather.temperature < 50) // cold and windy
     {
-        demand = (rand() % 50 + 50) / 100.0;
+        customer.demand = rand() % 75 + 55;
     }
     else if (weather.randomCondition = "Cloudy" && weather.temperature > 50) // hot and cloudy
     {
-        demand = (rand() % 50 + 50) / 100.0;
+        customer.demand = rand() % 95 + 75;
     }
     else if (weather.randomCondition = "Cloudy" && weather.temperature < 50) // cold and cloudy
     {
-        demand = (rand() % 50 + 50) / 100.0;
+        customer.demand = rand() % 80 + 60;
     }
     else if (weather.randomCondition = "Hazy" && weather.temperature > 50) // hot and hazy
     {
-        demand = (rand() % 50 + 50) / 100.0;
+        customer.demand = rand() % 70 + 50;
     }
     else if (weather.randomCondition = "Hazy" && weather.temperature < 50) // cold and hazy
     {
-        demand = (rand() % 50 + 50) / 100.0;
+        customer.demand = rand() % 65 + 45;
     }
     else if (weather.randomCondition = "Rainy" && weather.temperature > 50) // hot and rainy
     {
-        demand = (rand() % 50 + 50) / 100.0;
+        customer.demand = rand() % 10 + 5;
     }
-    else if (weather.randomCondition = "Rainy" && weather.temperature < 50) // cold and rainy worst case scenerio
+    else if (weather.randomCondition = "Rainy" && weather.temperature < 50) // cold and rainy
     {
-        demand = (rand()) % 10 + 20;
+        customer.demand = rand() % 10 + 5;
     }
     return demand;
 }
@@ -289,6 +290,7 @@ void Game::runGame()
 char Game::playAgain()
 {
     char choice;
+    cout << "Game Over" << endl;
     cout << "You successfully(more or less) ran your own lemonade stand!!" << endl;
     cout << "Would you like to play again? Yes(Y) or No(N)" << endl;
     cin >> choice;
@@ -312,19 +314,13 @@ void UserInterface::gameInstructions()
 {
     cout << "***********************************************************************************************************" << endl;
     cout << "Hello, and welcome!" << endl;
-    cout << "" << endl;
     cout << "Here we are going to be running our own lemonade stand, how exciting!!" << endl;
-    cout << "" << endl;
     cout << "Here is a rundown of the game" << endl;
-    cout << "" << endl;
     cout << "You will start with $50. " << endl;
-    cout << "You will start each day setting your Lemononade cup price and your recipe\nThen you will go to the store" << endl;
+    cout << "You will start each day by going to the store\nThen you will get to set your price per cup price\nFinally you get to define your recipe!" << endl;
     cout << "When the day starts customers will decide if they would like to purchase from you or not" << endl;
-    cout << "" << endl << flush;
     cout << "Keep in mind that the weather will affect the customers choice to buy!" << endl;
     cout << "This game will be ran for 7 days!" << endl;
-    cout << "" << endl;
-    cout << "" << endl;
     cout << "***********************************************************************************************************" << endl;
 }
 
