@@ -9,7 +9,7 @@ using namespace std;
 class Customer {
 public:
     double chanceOfBuying{}; // Probability of buying a glass of lemonade based on weather
-    double demand{};
+    double demand;
     
     Customer();
 };
@@ -21,7 +21,7 @@ public:
     int sugar;
     int ice;
     int cups;
-    int cupsSold{};
+    int cupsSold;
     double pricePerCup;
     double money;
     vector<Customer> customers;
@@ -37,6 +37,7 @@ public:
     void showInventory();
 };
 
+
 class Weather
 {
 public:
@@ -49,7 +50,7 @@ public:
     // constructor
     Weather();
 
-    // fucntions ( Can Do )
+    // functions ( Can Do )
     void seeForcast();
     string weatherType();
 };
@@ -132,13 +133,21 @@ void LemonadeStand::generateCustomers()
     LemonadeStand stand;
     int customerCount{}; // generates random customers below 
     
-    if (weather.weatherType() == "Sunny")
+    if (weather.weatherType() == "Sunny" && weather.temperature <= 50)
     {
         customerCount = rand() % 45 + 1; // chance of more customers to buy
     }
-    else if (weather.weatherType() == "Cloudy")
+    if (weather.weatherType() == "Sunny" && weather.temperature >= 50)
     {
-        customerCount = rand() % 15 + 1; // chance of less customers to buy
+        customerCount = rand() % 35 + 1; // chance of lesser customers due to below 50
+    }
+    else if (weather.weatherType() == "Cloudy" && weather.temperature <= 50)
+    {
+        customerCount = rand() % 40 + 1; // chance of more customers to buy
+    }
+    if (weather.weatherType() == "Cloudy" && weather.temperature >= 50)
+    {
+        customerCount = rand() % 30 + 1; // chance of lesser customers to buy due to below 50
     }
     customers.clear();
     for (int i = 0; i < customerCount; i++) {
