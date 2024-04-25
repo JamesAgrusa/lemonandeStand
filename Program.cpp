@@ -8,12 +8,10 @@ using namespace std;
 
 class Customer {
 public:
-    double chanceOfBuying; // Probability of buying a glass of lemonade based on weather
-    double demand;
+    double chanceOfBuying{}; // Probability of buying a glass of lemonade based on weather
+    double demand{};
     
-    Customer() {
-        chanceOfBuying = demand; //demand is determined by weather
-    }
+    Customer();
 };
 
 class LemonadeStand
@@ -23,7 +21,7 @@ public:
     int sugar;
     int ice;
     int cups;
-    int cupsSold;
+    int cupsSold{};
     double pricePerCup;
     double money;
     vector<Customer> customers;
@@ -53,7 +51,6 @@ public:
 
     // fucntions ( Can Do )
     void seeForcast();
-    double weatherDemand();
     string weatherType();
 };
 
@@ -101,6 +98,11 @@ int main() {
     return 0;
 }
 
+Customer::Customer()
+{
+    chanceOfBuying = demand; //demand is determined by weather
+}
+
 LemonadeStand::LemonadeStand() : lemons(0), sugar(0), ice(0), cups(0), pricePerCup(0), money(50.0) {}
 
 void LemonadeStand::buyIngredients()
@@ -126,7 +128,18 @@ void LemonadeStand::setPricePerCup()
 
 void LemonadeStand::generateCustomers()
 {
-    int customerCount = rand() % 20 + 5; // generates random customers between 5 - 24  
+    Weather weather;
+    LemonadeStand stand;
+    int customerCount{}; // generates random customers below 
+    
+    if (weather.weatherType() == "Sunny")
+    {
+        customerCount = rand() % 45 + 1; // chance of more customers to buy
+    }
+    else if (weather.weatherType() == "Cloudy")
+    {
+        customerCount = rand() % 15 + 1; // chance of less customers to buy
+    }
     customers.clear();
     for (int i = 0; i < customerCount; i++) {
         customers.push_back(Customer());
@@ -141,6 +154,7 @@ void LemonadeStand::serveCustomers()
     lemons -= player.changeLemonCount() * cupsSold; // updates inventory
     ice -= player.changeIceCount() * cupsSold; // updates inventory
     sugar -= player.changeSugarCount() * cupsSold; // updates inventory
+    cout << "" << endl;
     cout << "You sold " << cupsSold << " cups of lemonade!\n";
 }
 
@@ -191,15 +205,15 @@ void LemonadeStand::showInventory()
 
 Weather::Weather()
 {
-    temperature = rand() % 60 + 30;
+    temperature = rand() % 70 + 30;
 }
 
 string Weather::weatherType()
 {
     string RandomCondition;
-    string randomCondition[] = { "Hazy", "Sunny", "Cloudy", "Windy", "Rainy" };
+    string randomCondition[] = { "Sunny","Cloudy" };
     srand(unsigned(time(0)));
-    RandomCondition = randomCondition[rand() % 5]; // random weather generated between the conditions made above
+    RandomCondition = randomCondition[rand() % 2]; // random weather generated between cloudy or sunny
     return RandomCondition;
 }
 
@@ -210,54 +224,6 @@ void Weather::seeForcast()
     {
         cout << "Todays " << "temperature is " << weather.temperature << " degrees and " << weather.weatherType() << endl;
     }
-}
-
-double Weather::weatherDemand()
-{
-    Weather weather;
-    Customer customer;
-    double demand = customer.chanceOfBuying;
-    if (weather.randomCondition = "Sunny" && weather.temperature > 50) // hot and sunny
-    {
-        customer.demand = rand() % 100 + 80;
-    }
-    else if (weather.randomCondition = "Sunny" && weather.temperature < 50) // cold and sunny
-    {
-        customer.demand = rand() % 90 + 70;
-    }
-    else if (weather.randomCondition = "Windy" && weather.temperature > 50) // hot and windy
-    {
-        customer.demand = rand() % 85 + 65;
-    }
-    else if (weather.randomCondition = "Windy" && weather.temperature < 50) // cold and windy
-    {
-        customer.demand = rand() % 75 + 55;
-    }
-    else if (weather.randomCondition = "Cloudy" && weather.temperature > 50) // hot and cloudy
-    {
-        customer.demand = rand() % 95 + 75;
-    }
-    else if (weather.randomCondition = "Cloudy" && weather.temperature < 50) // cold and cloudy
-    {
-        customer.demand = rand() % 80 + 60;
-    }
-    else if (weather.randomCondition = "Hazy" && weather.temperature > 50) // hot and hazy
-    {
-        customer.demand = rand() % 70 + 50;
-    }
-    else if (weather.randomCondition = "Hazy" && weather.temperature < 50) // cold and hazy
-    {
-        customer.demand = rand() % 65 + 45;
-    }
-    else if (weather.randomCondition = "Rainy" && weather.temperature > 50) // hot and rainy
-    {
-        customer.demand = rand() % 55 + 35;
-    }
-    else if (weather.randomCondition = "Rainy" && weather.temperature < 50) // cold and rainy
-    {
-        customer.demand = rand() % 45 + 25;
-    }
-    return demand;
 }
 
 UserInterface::UserInterface()
