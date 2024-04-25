@@ -176,7 +176,7 @@ double LemonadeStand::calculateAndDisplayProfit()
     cout << "" << endl;
     cout << "You spent: $" << expenses << " for the day on supplies" << endl;    
     cout << "Daily Profit/Loss: $" << profit << endl;
-    cout << "Total Profit/Loss: $" << money << endl;
+    cout << "Total Profit/Loss: $" << money - 50 << endl;
     return profit;
 }
 
